@@ -42,7 +42,7 @@ function updateSearch(searchTerm) {
 
 function updateCards(list) {
     document.getElementById("result").innerHTML = "";
-    text = ""
+    var returntext = ""
     for (const obj of list) {
         var card = document.createElement("div")
         card.className = "card";        
@@ -62,11 +62,11 @@ function updateCards(list) {
                 document.getElementById("message").style.visibility = "hidden";
             }, 1000);
         });
-        if (text == "") {
-            text = output;
+        if (returntext == "") {
+            returntext = output;
         }
     }
-    return text;
+    return returntext;
 }
 
 function loadFile(filePath) {
