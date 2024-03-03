@@ -14,7 +14,15 @@ searchBar.addEventListener('keyup', function (e) {
     timeout = setTimeout(function () {
         updateSearch(searchBar.value);
         }, 1000);
-    });
+});
+searchbar.addEventListener("submit", function (e) {
+    navigator.clipboard.writeText(updateSearch(searchBar.value));
+    document.getElementById("message").innerHTML = "Copied template to clipboard!";
+    document.getElementById("message").style.visibility = "visible";
+    setTimeout(function(){
+        document.getElementById("message").style.visibility = "hidden";
+    }, 1000);
+});
 updateList();
 document.getElementById("message").style.visibility = "hidden"
 
@@ -27,14 +35,14 @@ function updateSearch(searchTerm) {
         updateCards(db);
     } else {
         //document.getElementById("result").innerHTML = "<div>" + fuse.search(searchTerm) + "</div>";
-        updateCards(fuse.search(searchTerm));
+        return updateCards(fuse.search(searchTerm));
     }
 }
 
 function updateCards(list) {
     document.getElementById("result").innerHTML = "";
+    text = ""
     for (const obj of list) {
-    
         var card = document.createElement("div")
         card.className = "card";        
         var container = document.createElement("div");
@@ -43,9 +51,9 @@ function updateCards(list) {
             "<h5>" + obj.tags + "</h5><p>" + obj.text + "</p>";
         card.appendChild(container);
         document.getElementById("result").appendChild(card);
+        var regex = /<br\s*[\/]?>/gi;
+        var output = obj.text.replace(regex, "\n");
         card.addEventListener("click", () => {
-            var regex = /<br\s*[\/]?>/gi;
-            var output = obj.text.replace(regex, "\n")
             navigator.clipboard.writeText(output);
             document.getElementById("message").innerHTML = "Copied template to clipboard!";
             document.getElementById("message").style.visibility = "visible";
@@ -53,7 +61,11 @@ function updateCards(list) {
                 document.getElementById("message").style.visibility = "hidden";
             }, 1000);
         });
+        if (text == "") {
+            text = output;
+        }
     }
+    return text;
 }
 
 function loadFile(filePath) {
