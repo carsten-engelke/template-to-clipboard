@@ -55,7 +55,7 @@ function updateCards(list) {
         var regex = /<br\s*[\/]?>/gi;
         var output = obj.text.replace(regex, "\n");
         card.addEventListener("click", () => {
-            navigator.clipboard.writeText(output);
+            navigator.clipboard.writeText(obj.text.replace(regex, "\n"));
             document.getElementById("message").innerHTML = "Copied template to clipboard!";
             document.getElementById("message").style.visibility = "visible";
             setTimeout(function(){
