@@ -24,6 +24,8 @@ searchBar.addEventListener('keyup', (e) => {
             }
         }, 1000);
 });
+
+searchBar.addEventListener("submit", (e) => {alert("submitted);});
 updateList();
 document.getElementById("message").style.visibility = "hidden"
 
