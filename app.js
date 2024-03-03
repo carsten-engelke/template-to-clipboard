@@ -12,7 +12,7 @@ var timeout = null;
 searchBar.addEventListener('keyup', (e) => {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-        updateSearch(searchBar.value);
+        alert(updateSearch(searchBar.value));
         }, 1000);
 });
 updateList();
