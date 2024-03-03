@@ -13,15 +13,7 @@ var timeout = null;
 searchBar.addEventListener('keyup', (e) => {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-        var updatedText = updateSearch(searchBar.value)
-        if (quickCopyOnSearch == "YES") {
-            navigator.clipboard.writeText();
-                document.getElementById("message").innerHTML = "Copied template to clipboard!";
-                document.getElementById("message").style.visibility = "visible";
-                setTimeout(function(){
-                    document.getElementById("message").style.visibility = "hidden";
-                }, 1000);
-            }
+        updateSearch(searchBar.value);
         }, 1000);
 });
 updateList();
@@ -36,13 +28,12 @@ function updateSearch(searchTerm) {
         updateCards(db);
     } else {
         //document.getElementById("result").innerHTML = "<div>" + fuse.search(searchTerm) + "</div>";
-        return updateCards(fuse.search(searchTerm));
+        updateCards(fuse.search(searchTerm));
     }
 }
 
 function updateCards(list) {
     document.getElementById("result").innerHTML = "";
-    var returntext = ""
     for (const obj of list) {
         var card = document.createElement("div")
         card.className = "card";        
@@ -52,9 +43,8 @@ function updateCards(list) {
             "<h5>" + obj.tags + "</h5><p>" + obj.text + "</p>";
         card.appendChild(container);
         document.getElementById("result").appendChild(card);
-        var regex = /<br\s*[\/]?>/gi;
-        var output = obj.text.replace(regex, "\n");
         card.addEventListener("click", () => {
+            var regex = /<br\s*[\/]?>/gi;
             navigator.clipboard.writeText(obj.text.replace(regex, "\n"));
             document.getElementById("message").innerHTML = "Copied template to clipboard!";
             document.getElementById("message").style.visibility = "visible";
@@ -62,11 +52,7 @@ function updateCards(list) {
                 document.getElementById("message").style.visibility = "hidden";
             }, 1000);
         });
-        if (returntext == "") {
-            returntext = output;
-        }
     }
-    return returntext;
 }
 
 function loadFile(filePath) {
