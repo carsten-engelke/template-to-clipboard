@@ -15,15 +15,6 @@ searchBar.addEventListener('keyup', (e) => {
         updateSearch(searchBar.value);
         }, 1000);
 });
-searchbar.addEventListener("submit", (e) => {
-    alert("dubmitted");
-    navigator.clipboard.writeText(updateSearch(searchBar.value));
-    document.getElementById("message").innerHTML = "Copied template to clipboard!";
-    document.getElementById("message").style.visibility = "visible";
-    setTimeout(function(){
-        document.getElementById("message").style.visibility = "hidden";
-    }, 1000);
-});
 updateList();
 document.getElementById("message").style.visibility = "hidden"
 
