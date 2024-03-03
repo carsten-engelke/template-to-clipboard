@@ -1,7 +1,7 @@
 "use strict";
 const urlParams = new URLSearchParams(window.location.search);
 const search = urlParams.get('q');
-const quickCopyOnSearch = "YES"
+var quickCopyOnSearch = "YES"
 var fuse;
 var db;
 if (search !== null && search !== "") {
@@ -14,7 +14,7 @@ searchBar.addEventListener('keyup', (e) => {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
         var updatedText = updateSearch(searchBar.value)
-        if quickCopyOnSeach == "YES" {
+        if quickCopyOnSearch == "YES" {
             navigator.clipboard.writeText();
                 document.getElementById("message").innerHTML = "Copied template to clipboard!";
                 document.getElementById("message").style.visibility = "visible";
