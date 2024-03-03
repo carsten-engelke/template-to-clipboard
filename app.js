@@ -9,13 +9,13 @@ if (search !== null && search !== "") {
 loadFile("template-db.json");
 var searchBar = document.getElementById("searchbar");
 var timeout = null;
-searchBar.addEventListener('keyup', function (e) {
+searchBar.addEventListener('keyup', (e) => {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
         updateSearch(searchBar.value);
         }, 1000);
 });
-searchbar.addEventListener("submit", function (e) {
+searchbar.addEventListener("submit", (e) => {
     alert("dubmitted");
     navigator.clipboard.writeText(updateSearch(searchBar.value));
     document.getElementById("message").innerHTML = "Copied template to clipboard!";
