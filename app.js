@@ -14,7 +14,7 @@ searchBar.addEventListener('keyup', (e) => {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
         var updatedText = updateSearch(searchBar.value)
-        if quickCopyOnSearch == "YES" {
+        if (quickCopyOnSearch == "YES") {
             navigator.clipboard.writeText();
                 document.getElementById("message").innerHTML = "Copied template to clipboard!";
                 document.getElementById("message").style.visibility = "visible";
