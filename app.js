@@ -1,6 +1,7 @@
 "use strict";
 const urlParams = new URLSearchParams(window.location.search);
 const search = urlParams.get('q');
+const quickCopyOnSearch = "YES"
 var fuse;
 var db;
 if (search !== null && search !== "") {
@@ -12,12 +13,15 @@ var timeout = null;
 searchBar.addEventListener('keyup', (e) => {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-        navigator.clipboard.writeText(updateSearch(searchBar.value));
-            document.getElementById("message").innerHTML = "Copied template to clipboard!";
-            document.getElementById("message").style.visibility = "visible";
-            setTimeout(function(){
-                document.getElementById("message").style.visibility = "hidden";
-            }, 1000);
+        var updatedText = updateSearch(searchBar.value)
+        if quickCopyOnSeach == "YES" {
+            navigator.clipboard.writeText();
+                document.getElementById("message").innerHTML = "Copied template to clipboard!";
+                document.getElementById("message").style.visibility = "visible";
+                setTimeout(function(){
+                    document.getElementById("message").style.visibility = "hidden";
+                }, 1000);
+            }
         }, 1000);
 });
 updateList();
