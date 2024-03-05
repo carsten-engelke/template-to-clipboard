@@ -15,8 +15,8 @@
   
   /* On mouse-over, add a deeper shadow */
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    background-color: rgba(0,0,0,0.1)
+    box-shadow: 0 12px 24px 0 rgba(0,0,0,0.2);
+    background-color: rgb(235,235,235)
   }
   
   /* Add some padding inside the card container */
@@ -43,7 +43,7 @@
   h5 {
       color: darkgray;
   }
-  
+
   .topnav {
     display: flex;
     overflow: hidden;
